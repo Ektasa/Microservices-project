@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,4 +30,7 @@ public class User {
         private String Email;
     @Column(name = "About")
         private String About;
+
+    @Transient
+    private List<Rating> ratings=new ArrayList<>();
 }
