@@ -8,11 +8,11 @@
 		<version>4.0.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.hotel.service</groupId>
-	<artifactId>HotelService</artifactId>
+	<groupId>com.Rating.service</groupId>
+	<artifactId>RatingService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HotelService</name>
-	<description>project for Hotel Service</description>
+	<name>RatingService</name>
+	<description>project for Rating Service</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -39,11 +39,11 @@
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

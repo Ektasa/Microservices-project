@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="b3c7c92d-a34c-4e41-96d8-1e60f7ec0d05" name="hotels_db@localhost Mapping">
+      <data-sources db="87e3c50b-b5c6-4ef2-92c1-9288dbca12dc" />
+      <scope>
+        <node kind="schema" qname="ratings_db" />
+      </scope>
+    </mapping>
+  </component>
+</project>

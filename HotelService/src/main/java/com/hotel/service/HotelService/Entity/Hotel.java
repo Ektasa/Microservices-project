@@ -24,4 +24,7 @@ public class Hotel {
     private String location;
     private String about;
 
+    public void sethotelId(String hotelIds) {
+        this.hotelId = hotelIds;
+    }
 }
