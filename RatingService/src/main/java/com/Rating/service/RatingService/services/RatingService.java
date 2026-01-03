@@ -1,8 +1,7 @@
-package com.Rating.service.RatingService.Service;
+package com.Rating.service.RatingService.services;
 
 import com.Rating.service.RatingService.Entity.Rating;
-import lombok.Setter;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 

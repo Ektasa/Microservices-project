@@ -1,15 +1,15 @@
-package com.Rating.service.RatingService.Impl;
+package com.Rating.service.RatingService.services.Impl;
 
 import com.Rating.service.RatingService.Entity.Rating;
-import com.Rating.service.RatingService.Repository.RatingRepository;
-import com.Rating.service.RatingService.Service.RatingService;
+import com.Rating.service.RatingService.repository.RatingRepository;
+import com.Rating.service.RatingService.services.RatingService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class RatingServiceImpl implements RatingService {
-    private RatingRepository repository;
+    private final RatingRepository repository;
 
     public RatingServiceImpl(RatingRepository repository) {
         this.repository = repository;
