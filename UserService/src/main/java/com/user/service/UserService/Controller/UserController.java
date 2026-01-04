@@ -24,16 +24,14 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(user1);
     }
     //single user
-@GetMapping("/{userId}")
-    public ResponseEntity<User> getSingleUSer(@PathVariable String userId) {
-    User user = userService.getUser(userId);
-    return ResponseEntity.ok(user);
-}
-@GetMapping("/all")
-public  ResponseEntity<List<User>> getAllUsers() {
-    List<User> allusers = userService.findAll();
-    return ResponseEntity.ok(allusers);
-}
-
-
+    @GetMapping("/{userId}")
+        public ResponseEntity<User> getSingleUSer(@PathVariable String userId) {
+        User user = userService.getUser(userId);
+        return ResponseEntity.ok(user);
+    }
+    @GetMapping("/all")
+    public  ResponseEntity<List<User>> getAllUsers() {
+        List<User> allusers = userService.findAll();
+        return ResponseEntity.ok(allusers);
+    }
 }
