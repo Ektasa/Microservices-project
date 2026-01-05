@@ -8,7 +8,11 @@ public interface USerService {
     //User findByUsername(String username);
     User saveUser(User user);
     List<User> findAll();
-    User getUser(String userId);
+    //User getUser(String userId);
+    User getUserById(String userId);
+
+    //get all users with ratings
+    List<User> findAllwithRatings();
     //deelete
     //update
 }
