@@ -11,9 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/users")
@@ -40,8 +40,6 @@ public class UserController {
     @GetMapping("/all2")
     public  ResponseEntity<List<User>> getAllUsers() {
         List<User> allusers = userService.findAllwithRatings();
-
-
         return ResponseEntity.ok(allusers);
     }
 }
