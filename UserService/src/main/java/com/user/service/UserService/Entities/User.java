@@ -19,7 +19,7 @@ import java.util.List;
 public class User {
 
     @Id
-    private Long id;
+//    private Long id;
     //    @Id
 //    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="UserId")

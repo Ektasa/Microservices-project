@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Service
 public class USerServiceImpl implements USerService {
@@ -22,7 +24,7 @@ public class USerServiceImpl implements USerService {
     @Autowired
     private RestTemplate restTemplate;
 
-    Logger log = Logger.getLogger(String.valueOf(UserController.class));
+    Logger log= Logger.getLogger(String.valueOf(UserController.class));
 
 
     @Override
@@ -47,12 +49,27 @@ public class USerServiceImpl implements USerService {
 //    }
     @Override
     public User getUserById(String userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User with given id is not found" + userId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User with given id is not found on server !! : " + userId));
+        // fetch rating of the above  user from RATING SERVICE
+        //http://localhost:8083/ratings/users/79f75e0a-ed61-435d-b589-ffe7a429a100
+        //+ user.getUserId(),
+        Rating[] ratingsOfUser = restTemplate.getForObject("http://localhost:8083/ratings/users/79f75e0a-ed61-435d-b589-ffe7a429a100" ,Rating[].class);
+        log.info("{} ");
+        assert ratingsOfUser != null;
+        List<Rating> ratings = Arrays.stream(ratingsOfUser).toList();
+        //List<Rating> ratingList = ratings.stream().map(rating -> {
+            //api call to hotel service to get the hotel
+            //http://localhost:8082/hotels/1cbaf36d-0b28-4173-b5ea-f1cb0bc0a791
+            //ResponseEntity<Hotel> forEntity = restTemplate.getForEntity("http://HOTEL-SERVICE/hotels/"+rating.getHotelId(), Hotel.class);
+          //  Hotel hotel = hotelService.getHotel(rating.getHotelId());
+            // logger.info("response status code: {} ",forEntity.getStatusCode());
+            //set the hotel to rating
+           // rating.setHotel(hotel);
+            //return the rating
+           // return rating;
+        //}).collect(Collectors.toList());
 
-        // http://localhost:8081/users/0ab8150e-8ed1-43b9-ba9a-b1c81350ee55
-        ArrayList<Rating> forObject = restTemplate.getForObject("http://localhost:8081/users/"+userId, ArrayList.class);
-        log.info("{ }" + forObject.toString());
-        user.setRatings(forObject);
+        user.setRatings(ratings);
         return user;
     }
 
