@@ -1,12 +1,14 @@
 package com.user.service.UserService.Dao;
 
 import com.user.service.UserService.Controller.UserController;
+import com.user.service.UserService.Entities.Hotel;
 import com.user.service.UserService.Entities.Rating;
 import com.user.service.UserService.Entities.User;
 import com.user.service.UserService.Exception.ResourceNotFoundException;
 import com.user.service.UserService.Repository.UserRepository;
 import com.user.service.UserService.Service.USerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -57,17 +59,17 @@ public class USerServiceImpl implements USerService {
         log.info("{} ");
         assert ratingsOfUser != null;
         List<Rating> ratings = Arrays.stream(ratingsOfUser).toList();
-        //List<Rating> ratingList = ratings.stream().map(rating -> {
-            //api call to hotel service to get the hotel
-            //http://localhost:8082/hotels/1cbaf36d-0b28-4173-b5ea-f1cb0bc0a791
-            //ResponseEntity<Hotel> forEntity = restTemplate.getForEntity("http://HOTEL-SERVICE/hotels/"+rating.getHotelId(), Hotel.class);
-          //  Hotel hotel = hotelService.getHotel(rating.getHotelId());
-            // logger.info("response status code: {} ",forEntity.getStatusCode());
-            //set the hotel to rating
-           // rating.setHotel(hotel);
-            //return the rating
-           // return rating;
-        //}).collect(Collectors.toList());
+        List<Rating> ratingList = ratings.stream().map(rating -> {
+           // api call to hotel service to get the hotel
+          //  http://localhost:8082/hotels/1cbaf36d-0b28-4173-b5ea-f1cb0bc0a791
+            ResponseEntity<Hotel> forEntity = restTemplate.getForEntity("http://HOTEL-SERVICE/hotels/"+rating.getHotelId(), Hotel.class);
+            Hotel hotel = hotelService.getHotel(rating.getHotelId());
+             log.info("response status code: {} ",forEntity.getStatusCode());
+           // set the hotel to rating
+            rating.setHotel(hotel);
+           // return the rating
+            return rating;
+        }).collect(Collectors.toList());
 
         user.setRatings(ratings);
         return user;
