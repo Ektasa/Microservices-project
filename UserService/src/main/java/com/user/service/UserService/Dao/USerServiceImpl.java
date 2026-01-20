@@ -6,7 +6,6 @@ import com.user.service.UserService.Entities.Rating;
 import com.user.service.UserService.Entities.User;
 import com.user.service.UserService.Exception.ResourceNotFoundException;
 import com.user.service.UserService.Repository.UserRepository;
-import com.user.service.UserService.Service.HotelService;
 import com.user.service.UserService.Service.USerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -56,7 +55,7 @@ public class USerServiceImpl implements USerService {
         // fetch rating of the above  user from RATING SERVICE
         //http://localhost:8083/ratings/users/79f75e0a-ed61-435d-b589-ffe7a429a100
         //+ user.getUserId(),
-        Rating[] ratingsOfUser = restTemplate.getForObject("http://localhost:8083/ratings/users"+userId ,Rating[].class);
+        Rating[] ratingsOfUser = restTemplate.getForObject("http://localhost:8083/ratings/users/79f75e0a-ed61-435d-b589-ffe7a429a100" ,Rating[].class);
         log.info("{} ");
         assert ratingsOfUser != null;
         List<Rating> ratings = Arrays.stream(ratingsOfUser).toList();
@@ -64,21 +63,15 @@ public class USerServiceImpl implements USerService {
            // api call to hotel service to get the hotel
           //  http://localhost:8082/hotels/1cbaf36d-0b28-4173-b5ea-f1cb0bc0a791
             ResponseEntity<Hotel> forEntity = restTemplate.getForEntity("http://HOTEL-SERVICE/hotels/"+rating.getHotelId(), Hotel.class);
-            HotelService hotelService = new HotelService() {
-                @Override
-                public Hotel getHotel(String hotelId) {
-                    return null;
-                }
-            };
-            Hotel hotel = hotelService.getHotel(rating.getHotelId());
-            // log.info("response status code: {} ",forEntity.getStatusCode());
-           // set the hotel to rating
-            rating.setHotel(hotel);
-           // return the rating
+           // Hotel hotel = hotelService.getHotel(rating.getHotelId());
+          //   log.info("response status code: {} ",forEntity.getStatusCode());
+//            set the hotel to rating
+            //rating.setHotel(hotel);
+//            return the rating
             return rating;
         }).collect(Collectors.toList());
 
-        user.setRatings(ratingList);
+        user.setRatings(ratings);
         return user;
     }
 
