@@ -12,7 +12,7 @@ public interface USerService {
     User getUserById(String userId);
 
     //get all users with ratings
-    List<User> findAllwithRatings();
+    //List<User> findAllwithRatings();
     //deelete
     //update
 }

@@ -37,9 +37,9 @@ public class UserController {
         List<User> allusers = userService.findAll();
         return ResponseEntity.ok(allusers);
     }
-    @GetMapping("/all2")
-    public  ResponseEntity<List<User>> getAllUsers() {
-        List<User> allusers = userService.findAllwithRatings();
-        return ResponseEntity.ok(allusers);
-    }
+//    @GetMapping("/all2")
+//    public  ResponseEntity<List<User>> getAllUsers() {
+//        List<User> allusers = userService.findAllwithRatings();
+//        return ResponseEntity.ok(allusers);
+//    }
 }
