@@ -11,8 +11,13 @@ public interface USerService {
     //User getUser(String userId);
     User getUserById(String userId);
 
+    List<User> getAllUser();
+
+    //get single user
+    User getUser(String userId);
+
     //get all users with ratings
     //List<User> findAllwithRatings();
-    //deelete
+    //delete
     //update
 }
